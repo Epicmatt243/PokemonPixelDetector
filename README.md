@@ -10,7 +10,7 @@ This script is used for automatically repeating a legendary Pokemon encounter to
 
 #### Running the script...  
 1. Run the script
-2. The user will be prompted to click on the emulator window and hover their mouse over the sprite of the legendary Pokemon. After a countdown, the script will begin to automatically monitor the pixel colour at that location.
+2. The user will be prompted to click on the emulator window and hover their mouse over the sprite of the legendary Pokemon. After a countdown, the script will capture those specific coordinates and begin to automatically monitor the pixel colour at that location.
 3. If the detected colour matches the standard non-shiny colour, the script initiates a soft reset in the emulator.
 4. The script will then automatically rencounter the Pokemon and check what the colour of it is.
 5. Steps 3 and 4 will repeat until a shiny Pokemon is detected.
