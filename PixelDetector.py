@@ -1,6 +1,5 @@
 import pyautogui
 import time
-from pynput import mouse
 from PIL import Image
 from pynput.keyboard import Key, Controller
 
