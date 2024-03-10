@@ -11,10 +11,14 @@ def get_color(x, y):
     del screenshot
     return pixel_color
 
+def approach_legendary(keyboard):
+    keyboard.press('w')
+    time.sleep(0.1)
+    keyboard.press('w')
+    time.sleep(0.3)
+
 def process_pixel(x, y):
-    
-    print('Monitoring (', x, ',', y, ')')
-    
+        
     normal_Color = get_color(x, y)
     pixel_color = normal_Color
     print("Standard non-shiny colour:", normal_Color)
@@ -25,7 +29,7 @@ def process_pixel(x, y):
 
     while pixel_color == normal_Color:
         print(str(counter) + ".", "Detected Colour:", pixel_color, "- Standard.")
-        counter = counter + 1
+        counter += 1
 
         #perform soft reset
         keyboard.press('f')
@@ -49,10 +53,7 @@ def process_pixel(x, y):
             keyboard.release('f')
 
         #''' uncomment this part if player has to 'approach' legendary (eg. kyogre and groudon)
-        keyboard.press('w')
-        time.sleep(0.1)
-        keyboard.press('w')
-        time.sleep(0.3)
+        approach_legendary(keyboard)
         #'''
 
         #change so that it gives enough time for the encounter animation
@@ -74,6 +75,8 @@ def main():
         time.sleep(1)
 
     current_position = pyautogui.position()
+    print('Monitoring (', current_position[0], ',', current_position[1], ')')
+
     process_pixel(current_position[0], current_position[1])
 
 if __name__ == "__main__":
