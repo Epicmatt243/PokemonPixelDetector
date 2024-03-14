@@ -13,7 +13,7 @@ def get_color(x, y):
 def approach_legendary(keyboard):
     keyboard.press('w')
     time.sleep(0.1)
-    keyboard.press('w')
+    keyboard.release('w')
     time.sleep(0.3)
 
 def process_pixel(x, y):
