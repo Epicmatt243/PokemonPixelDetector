@@ -3,34 +3,39 @@ import time
 from PIL import Image
 from pynput.keyboard import Key, Controller
 
-def get_color(x, y):
+import pygetwindow as gw
+
+def get_colour(x, y):
     # Get the pixel color at the specified coordinates
     screenshot = pyautogui.screenshot()
-    pixel_color = screenshot.getpixel((x, y))
+    pixel_colour = screenshot.getpixel((x, y))
     del screenshot
-    return pixel_color
+    return pixel_colour
 
 def approach_legendary(keyboard):
+    gw.getWindowsWithTitle('BlueStacks App Player')[0].activate()
     keyboard.press('w')
     time.sleep(0.1)
+    gw.getWindowsWithTitle('BlueStacks App Player')[0].activate()
     keyboard.release('w')
     time.sleep(0.3)
 
 def process_pixel(x, y):
         
-    normal_Color = get_color(x, y)
-    pixel_color = normal_Color
-    print("Standard non-shiny colour:", normal_Color)
+    normal_Colour = get_colour(x, y)
+    pixel_colour = normal_Colour
+    print("Standard non-shiny colour:", normal_Colour)
     
     keyboard = Controller()
 
     counter = 1
 
-    while pixel_color == normal_Color:
-        print(str(counter) + ".", "Detected Colour:", pixel_color, "- Standard.")
+    while pixel_colour == normal_Colour:
+        print(str(counter) + ".", "Detected Colour:", pixel_colour, "- Standard.")
         counter += 1
 
         #perform soft reset
+        gw.getWindowsWithTitle('BlueStacks App Player')[0].activate()
         keyboard.press('f')
         keyboard.press(Key.space)
         keyboard.press('x')
@@ -38,6 +43,7 @@ def process_pixel(x, y):
  
         time.sleep(0.2)
 
+        gw.getWindowsWithTitle('BlueStacks App Player')[0].activate()
         keyboard.release('f')
         keyboard.release(Key.space)
         keyboard.release('x')
@@ -47,20 +53,22 @@ def process_pixel(x, y):
 
         for i in range(1, 4):
             time.sleep(0.3)
+            gw.getWindowsWithTitle('BlueStacks App Player')[0].activate()
             keyboard.press('f')
             time.sleep(0.2)
+            gw.getWindowsWithTitle('BlueStacks App Player')[0].activate()
             keyboard.release('f')
 
-        #''' uncomment this part if player has to 'approach' legendary (eg. kyogre and groudon)
+        ''' uncomment this part if player has to 'approach' legendary (eg. kyogre and groudon)
         approach_legendary(keyboard)
-        #'''
+        '''
 
         #change so that it gives enough time for the encounter animation
-        time.sleep(1.3)
+        time.sleep(1.4)
 
-        pixel_color = get_color(x, y)
+        pixel_colour = get_colour(x, y)
 
-    print(str(counter) + ".", "Detected Colour:", pixel_color, "- SHINY DETECTED!!!")
+    print(str(counter) + ".", "Detected Colour:", pixel_colour, "- SHINY DETECTED!!!")
 
 def main():
     
@@ -80,3 +88,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
